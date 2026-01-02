@@ -1,0 +1,20 @@
+---
+- name: Create user and copy files into users home dir and also change permissions
+  hosts: all
+  tasks:
+    - name: Create user
+      user:
+        name: Ravi
+        password: intelliqit
+        home: /tmp/Ravi
+        uid: 9999
+        shell: /bin/bash
+        comment: "A super user"
+    - name:  Copy ansible inventory file into ravi's home dir
+      copy:
+        src: /etc/ansible/hosts
+        dest: /tmp/Ravi
+        mode: 750
+        owner: Ravi
+        group: sai
+...

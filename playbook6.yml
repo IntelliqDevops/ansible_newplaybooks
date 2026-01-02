@@ -1,0 +1,20 @@
+---
+- name: Install git and clone a remote repo from git hub and change persmissions
+  hosts: all
+  tasks:
+    - name: Install git
+      apt:
+        name: git
+        state: present
+        update_cache: yes
+    - name: Clone a remote git repo
+      git:
+        repo: https://github.com/IntelliqDevops/maven.git
+        dest: /tmp/mygit
+    - name: Change permissions of Readme.md file
+      file:
+        name: /tmp/mygit/README.md
+        mode: 750
+        owner: sai
+        group: root
+... 
