@@ -1,0 +1,10 @@
+---
+- name: Install java
+  hosts: 172.31.29.110
+  tasks:
+    - name: Java installation
+      apt:
+        name: "{{g}}"
+        state: "{{h}}"
+        update_cache: "{{i}}"
+...

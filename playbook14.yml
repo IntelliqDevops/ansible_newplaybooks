@@ -1,0 +1,9 @@
+---
+- name: Implementing host scope varibales
+  hosts: webserver
+  tasks:
+    - name: Install firewall
+      apt:
+        name: "{{a}}"
+        state: "{{b}}"
+        update_cache: "{{c}}"
