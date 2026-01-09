@@ -1,0 +1,25 @@
+---
+- name: Install web server based on OS family
+  hosts: all
+
+  vars:
+    package_name: >-
+      {{
+        'nginx' if ansible_os_family == 'Debian'
+        else 'httpd' if ansible_os_family == 'RedHat'
+        else 'apache2'
+      }}
+
+  tasks:
+    - name: Show selected package name
+      debug:
+        msg: "Selected web package is {{ package_name }}"
+
+    - name: Install web server package
+      package:
+        name: "{{ package_name }}"
+        state: present
+    - name: Restart webserver
+      service:
+        name: "{{package_name}}"
+        state: restarted

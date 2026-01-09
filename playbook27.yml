@@ -1,0 +1,45 @@
+---
+- name: Configure apache or httpd based on OS flavour
+  hosts: all
+  tasks:
+    - block:
+      - name: Install apache2 on Ubuntu servers
+        apt:
+          name: apache2
+          state: present
+          update_cache: yes
+      rescue:
+        - name: Install httpd on Redhat servers
+          yum:
+            name: httpd
+            state: present
+            update_cache: yes
+    - name: Edit the index.html file
+      copy:
+         content: "IntelliQIt"
+         dest: /var/www/html/index.html
+    - block: 
+        - name: Restart apache2 on ubuntu servers
+          service:
+            name: apache2
+            state: restarted
+      rescue:
+        - name: Restart httpd on redht server
+          service:
+            name: httpd
+            state: restarted
+    - name: Check apache2/httpd response on all servers
+      uri:
+        url: "{{item}}"
+        status_code: 200
+      with_items:
+        - http://172.31.18.252
+        - http://172.31.19.216
+        - http://172.31.19.46
+...
+
+
+
+
+
+
