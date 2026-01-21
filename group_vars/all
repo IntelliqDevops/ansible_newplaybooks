@@ -1,0 +1,17 @@
+---
+a: tomcat10
+b: present
+c: yes
+d: tomcat10-admin
+e: no
+f: tomcat-users.xml
+g: /etc/tomcat10
+h: 8080
+i: 9090
+j: /etc/tomcat10/server.xml
+k: restarted 
+l: 30
+m: "http://172.31.19.216:9090"
+n: "http://172.31.18.252:9090"
+o: 200
+...

@@ -1,6 +1,7 @@
 ---
 - name: Create a user on all servers
   hosts: all
+  connection: local
   become: yes
   tasks:
     - name: User creation
@@ -8,7 +9,7 @@
         name: Anusha
         password: intelliqit
         home: /tmp/Anusha
-        uid: 8989
+        uid: 7789
         comment: "a normal user"
         shell: /bin/bash
 

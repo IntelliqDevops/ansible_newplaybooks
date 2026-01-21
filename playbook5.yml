@@ -1,6 +1,7 @@
 ---
 - name: Create an empty folder and download jenkins.war
   hosts: all
+  
   tasks:
     - name: Create empty folder
       file:
